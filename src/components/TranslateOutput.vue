@@ -1,5 +1,5 @@
 <template>
-  <div id="translate-form">
+  <div id="translate-form" class="translated-text">
     <h2>{{ translatedText }}</h2>
   </div>
 </template>
@@ -11,5 +11,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.translated-text {
+  margin-top: 10px;
+
+}
 </style>

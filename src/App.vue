@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
+  <div class="text-center container" id="app">
     <h1>Word Translator</h1>
+    <h5 class="text-muted">Powered By Vue.js</h5>
+    <hr>
     <translate-form @formSubmit="translateText"></translate-form>
     <translate-output v-text="translatedText"></translate-output>
   </div>
@@ -34,4 +36,9 @@ export default {
 </script>
 
 <style>
+body {
+  background:#fefefe;
+  margin: auto;
+  padding: auto;
+}
 </style>
