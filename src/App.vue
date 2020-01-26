@@ -1,28 +1,37 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Word Translator</h1>
+    <translate-form @formSubmit="translateText"></translate-form>
+    <translate-output v-text="translatedText"></translate-output>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TranslateForm from "./components/TranslateForm";
+import TranslateOutput from "./components/TranslateOutput";
 
 export default {
   name: 'app',
+  data() {
+    return {
+      translatedText: "",
+      api_key: "trnsl.1.1.20200126T053110Z.3db468c07704299b.37e7fdcbfe5ad7fff7f5474e84ef698a5db93a63"
+    }
+  },
   components: {
-    HelloWorld
+    TranslateForm,
+    TranslateOutput
+  },
+  methods: {
+    translateText(text) {
+      this.$http.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${this.api_key}&lang=en-hi&text=`+text)
+        .then(response => {
+          this.translatedText = response.body.text[0];
+        });
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
