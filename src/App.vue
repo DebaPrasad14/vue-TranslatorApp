@@ -23,8 +23,8 @@ export default {
     TranslateOutput
   },
   methods: {
-    translateText(text) {
-      this.$http.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${this.api_key}&lang=en-hi&text=`+text)
+    translateText(text, language) {
+      this.$http.get(`https://translate.yandex.net/api/v1.5/tr.json/translate?key=${this.api_key}&lang=`+language+`&text=`+text)
         .then(response => {
           this.translatedText = response.body.text[0];
         });
